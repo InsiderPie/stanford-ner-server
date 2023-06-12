@@ -12,6 +12,7 @@ COPY src/main/java/de/insiderpie/StanfordNERDownloader.java src/main/java/de/ins
 # Compile and run the StanfordNERDownloader
 RUN javac src/main/java/de/insiderpie/StanfordNERDownloader.java
 RUN java -classpath src/main/java de.insiderpie.StanfordNERDownloader
+RUN rm src/main/java/de/insiderpie/StanfordNERDownloader.class
 # Copy the remaining source files
 COPY . .
 # Set the micronaut port to $PORT or 16020 as default
