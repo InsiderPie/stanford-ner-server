@@ -5,7 +5,7 @@ WORKDIR /app
 RUN mkdir lib
 
 # ./gradlew requires xargs
-RUN microdnf install findutils
+RUN apk update && apk add findutils
 
 # Copy only the StanfordNERDownloader
 COPY src/main/java/de/insiderpie/StanfordNERDownloader.java src/main/java/de/insiderpie/StanfordNERDownloader.java
