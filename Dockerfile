@@ -1,4 +1,4 @@
-FROM ghcr.io/graalvm/native-image:java17
+FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2
 
 RUN mkdir /app
 WORKDIR /app
