@@ -1,4 +1,4 @@
 micronaut.server.host: 0.0.0.0
-micronaut.server.port: 16020
+micronaut.server.port: 8080
 micronaut.application.name: stanfordNerServer
 netty.default.allocator.max-order: 3
