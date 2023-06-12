@@ -1,11 +1,10 @@
 FROM ghcr.io/graalvm/native-image:ol9-java17-22.3.2
 
-RUN mkdir /app
 WORKDIR /app
 RUN mkdir lib
 
 # xargs is needed by ./gradlew nativeCompile
-RUN microdnf install findutils
+RUN microdnf install findutils -y
 
 # Copy only the StanfordNERDownloader
 COPY src/main/java/de/insiderpie/StanfordNERDownloader.java src/main/java/de/insiderpie/StanfordNERDownloader.java
@@ -18,6 +17,6 @@ COPY . .
 # Set the micronaut port to $PORT or 16020 as default
 RUN printf "micronaut.server.host: 0.0.0.0\nmicronaut.server.port: ${PORT:=16020}\nmicronaut.application.name: stanfordNerServer\nnetty.default.allocator.max-order: 3" > src/main/resources/application.yml
 # Build a native executable
-RUN ./gradlew nativeCompile
+RUN ./gradlew nativeCompile --no-daemon
 
 ENTRYPOINT ./build/native/nativeCompile/stanfordner
