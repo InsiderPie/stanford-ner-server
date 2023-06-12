@@ -1,8 +1,11 @@
-FROM openjdk:17
+FROM amazoncorretto:17-alpine
 
 RUN mkdir app
 WORKDIR /app
 RUN mkdir lib
+
+# ./gradlew requires xargs
+RUN microdnf install findutils
 
 # Copy only the StanfordNERDownloader
 COPY src/main/java/de/insiderpie/StanfordNERDownloader.java src/main/java/de/insiderpie/StanfordNERDownloader.java
@@ -10,6 +13,7 @@ COPY src/main/java/de/insiderpie/StanfordNERDownloader.java src/main/java/de/ins
 RUN javac src/main/java/de/insiderpie/StanfordNERDownloader.java
 RUN java -classpath src/main/java de.insiderpie.StanfordNERDownloader
 RUN rm src/main/java/de/insiderpie/StanfordNERDownloader.{java,class}
+
 # Copy the remaining source files
 COPY . .
 # Set the micronaut port to $PORT or 8080 as default
