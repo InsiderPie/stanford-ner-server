@@ -1,4 +1,4 @@
-FROM amazoncorretto:17.0.7-alpine
+FROM amazoncorretto:21.0.1-alpine
 
 RUN mkdir app
 WORKDIR /app
